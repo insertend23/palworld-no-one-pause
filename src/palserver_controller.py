@@ -1,7 +1,7 @@
+import os
 import subprocess
 from configparser import ConfigParser
 from subprocess import Popen
-from psutil import Process
 import psutil
 from src.palserver_sniffer import PalServerPacketSniffer
 from src.rcon import Rcon, RconSocket
@@ -22,7 +22,7 @@ class PalServerController:
         rcon_pwd = config["PalServer"]["rcon_pwd"]
         root_pwd = config["Unix"]["root_pwd"]
 
-        self._run_params = [program_path, program_args]
+        self._run_params = [os.path.expanduser(program_path), program_args]
         self._rcon = Rcon(RconSocket(server_ip, rcon_port), rcon_pwd)
         self._sniffer = PalServerPacketSniffer(server_port, root_pwd)
 
@@ -41,10 +41,13 @@ class PalServerController:
         return players_output.strip().split("\n")[1:]
 
     def start_server(self):
-        Popen(
-            self._run_params,
-            creationflags=subprocess.DETACHED_PROCESS,
-        )
+        if os.name == "nt":
+            Popen(
+                self._run_params,
+                creationflags=subprocess.DETACHED_PROCESS,
+            )
+        else:
+            Popen(["nohup"] + self._run_params + ["&"], start_new_session=True)
         wait_timer("server to start")
 
     def pause_server(self):

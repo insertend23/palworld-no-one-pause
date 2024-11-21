@@ -48,3 +48,4 @@ if os.name == "nt" and not is_admin():
     ctypes.windll.shell32.ShellExecuteW(
         None, "runas", sys.executable, " ".join(sys.argv), None, 1
     )
+    sys.exit()

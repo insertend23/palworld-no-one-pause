@@ -133,7 +133,3 @@ class ConfigLoader:
             return True
         except UnicodeEncodeError:
             return False
-
-
-x = ConfigLoader().load()
-print(x)
