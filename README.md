@@ -10,13 +10,13 @@ A simple script that pauses the Palworld server when no players are online.
 
 ## Requirements
 * python 3.7+
-* <a href="https://npcap.com/#download" target="_blank">Npcap</a> (Windows users)
+* [Npcap](https://npcap.com/#download) (Windows users)
 * tcpdump (Linux users)
 
 ## Usage
 **This script requires administrator(root) privileges as it uses real-time sniffing to detect when players join the server.**
 
-This script uses the Palserver RCON. Please set `RCONEnable=True` in the <a href="https://tech.palworldgame.com/settings-and-operation/configuration" target="_blank">Palserver configuration</a>.
+This script uses the Palserver RCON. Please set `RCONEnable=True` in the [Palserver configuration](https://tech.palworldgame.com/settings-and-operation/configuration).
 
 Before running the script, make sure the settings are correctly saved in the config.ini file.
 
@@ -44,4 +44,4 @@ python3 noone_pause.py
 ```
 
 ## Acknowledgement
-<a href="https://github.com/thijsvanloef/palworld-server-docker/issues/32#issuecomment-1926103919" target="_blank">hoonlight's Palserver Docker pause script</a>
+[hoonlight's Palserver docker pause script](https://github.com/thijsvanloef/palworld-server-docker/issues/32#issuecomment-1926103919)
